@@ -13,6 +13,7 @@
     "noImplicitAny": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
+    "resolveJsonModule": true,
     "sourceMap": true,
     "module": "es6",
     "target": "es5",

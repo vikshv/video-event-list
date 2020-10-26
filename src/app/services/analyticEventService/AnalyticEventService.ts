@@ -1,4 +1,4 @@
-
+import fixture from './fixture.json';
 import type { AnalyticEvent } from 'core/domains/RootState/AnalyticEventState';
 
 interface NetworkService {
@@ -18,7 +18,18 @@ export default class AnalyticEventService {
 
     async loadEvents(): Promise<AnalyticEvent[]> {
         const url = 'http://www.mocky.io/v2/5e60c5f53300005fcc97bbdd';
-        const events = await this.networkService.get<AnalyticEvent[]>(url);
+        let events;
+
+        try {
+            events = await this.networkService.get<AnalyticEvent[]>(url);
+        } catch {
+            events = fixture as AnalyticEvent[];
+        }
+
+        if (!events?.length) {
+            events = fixture as AnalyticEvent[];
+        }
+
         return events.sort((a: AnalyticEvent, b: AnalyticEvent) => {
             let result;
             if (b.timestamp < a.timestamp) {
