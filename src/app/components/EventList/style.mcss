@@ -1,0 +1,19 @@
+.list {
+    position: absolute;
+    right: 0;
+
+    flex-shrink: 0;
+    width: 200px;
+    height: 100%;
+    overflow: auto;
+}
+
+.event {
+    padding: 8px;
+    border-bottom: 1px solid #444444;
+    cursor: pointer;
+}
+
+.event:hover {
+    background-color: #dddddd;
+}
