@@ -130,10 +130,6 @@ module.exports = function(options) {
         ].concat(plugins),
 
         optimization: {
-            minimizer: [
-                '...',
-                new CssMinimizerPlugin()
-            ],
             splitChunks: {
                 cacheGroups: {
                     vendors: {
@@ -152,82 +148,10 @@ module.exports = function(options) {
                     }
                 }
             }
+        },
+
+        stats: {
+            children: false
         }
     };
 };
-
-
-// const path = require ('path');
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-// const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-// const optimization = require('./webpack/configs/optimization');
-
-// module.exports = function(options) {
-//     const mode = options.mode || 'development';
-
-//     const rules = options.rules || [];
-//     const plugins = options.plugins || [];
-
-//     const publicPath = options.publicPath;
-//     const outputPath = options.outputPath;
-
-//     const imagesPublicPath = publicPath + 'images';
-
-//     const alias = {
-//         'app': 'src/app',
-//         'core': 'src/core',
-//     };
-
-//     if (mode === 'development') {
-//         alias['react-dom'] = '@hot-loader/react-dom';
-//     }
-
-//     return {
-//         mode,
-
-//         entry: {
-//             app: './src/app/index.js'
-//         },
-
-//         output: {
-//             filename: '[name].[hash].js',
-//             path: path.resolve(__dirname, outputPath),
-//             publicPath
-//         },
-
-//         resolve: {
-//             modules: [
-//                 __dirname,
-//                 'node_modules'
-//             ],
-//             alias,
-//             extensions: ['.js', '.ts', '.tsx']
-//         },
-
-//         resolveLoader: {
-//             moduleExtensions: ['-loader']
-//         },
-
-//         plugins: [
-//             new ForkTsCheckerWebpackPlugin({
-//                 async: mode === 'development'
-//             }),
-//             new MiniCssExtractPlugin({
-//                 filename: '[name].[hash].css',
-//                 ignoreOrder: false
-//             }),
-//             new CaseSensitivePathsPlugin()
-//         ].concat(plugins),
-
-//         module: {
-//             rules: [].concat(rules)
-//         },
-
-//         optimization: optimization(),
-
-//         stats: {
-//             children: false
-//         }
-//     };
-// };

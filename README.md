@@ -1,6 +1,6 @@
 # Результат работы над тестовым заданием для [Netris](https://www.netris.ru/)
 
-# [Задание](./exercise.pdf)
+## [Задание](./exercise.pdf)
 
 ## Install and start App
 
@@ -15,3 +15,13 @@ npm start
 ## Screenshot
 
 ![screenshot](./screenshot.png)
+
+## Test (after install packages)
+
+### Using npm
+
+```sh
+npm run test
+```
+
+
