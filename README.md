@@ -12,10 +12,6 @@ npm start
 
 ### Open locally http://localhost:3000
 
-## Screenshot
-
-![screenshot](./screenshot.png)
-
 ## Test (after install packages)
 
 ### Using npm
@@ -23,5 +19,6 @@ npm start
 ```sh
 npm run test
 ```
+## Screenshot
 
-
+![screenshot](./screenshot.png)
