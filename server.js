@@ -19,7 +19,7 @@ const serverConfig = {
         aggregateTimeout: 500,
         ignored: /node_modules/
     },
-    open: true,
+    open: false,
     stats: 'minimal'
 };
 
