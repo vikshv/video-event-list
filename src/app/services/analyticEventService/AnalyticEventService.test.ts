@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import expect from 'expect';
 
 import AnalyticEventService from './AnalyticEventService';
 import fixture from './fixture.json';
@@ -13,9 +13,9 @@ describe('AnalyticEventService', function() {
             }
         });
 
-        it('should return data', async function() {
+        test('should return data', async function() {
             const events = await analyticEventService.loadEvents();
-            expect(events).to.be.deep.equal(fixture);
+            expect(events).toEqual(fixture);
         });
     });
 });

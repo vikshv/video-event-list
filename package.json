@@ -5,6 +5,12 @@
     "browserslist": [
         "last 2 versions"
     ],
+    "jest": {
+        "moduleNameMapper": {
+            "^app(.*)$": "<rootDir>/src/app/$1",
+            "^core(.*)$": "<rootDir>/src/core/$1"
+        }
+    },
     "scripts": {
         "start": "npm run web:hot",
         "static:install": "npm install --no-save",
@@ -15,11 +21,14 @@
         "eslint": "gulp eslint",
         "tslint": "gulp tslint",
         "stylelint": "gulp stylelint",
-        "test": "node_modules/.bin/karma start --single-run --no-auto-watch"
+        "test": "jest",
+        "test:watch": "npm test -- --watch"
     },
     "devDependencies": {
-        "@types/chai": "^4.2.14",
-        "@types/mocha": "^8.0.3",
+        "@babel/core": "^7.12.3",
+        "@babel/preset-env": "^7.12.1",
+        "@babel/preset-typescript": "^7.12.1",
+        "@types/jest": "^26.0.15",
         "@types/react": "^16.9.53",
         "@types/react-dom": "^16.9.8",
         "@types/react-redux": "^7.1.9",
@@ -28,8 +37,8 @@
         "@typescript-eslint/eslint-plugin": "^4.5.0",
         "@typescript-eslint/parser": "^4.5.0",
         "babel-eslint": "^10.1.0",
+        "babel-jest": "^26.6.3",
         "case-sensitive-paths-webpack-plugin": "^2.3.0",
-        "chai": "^4.2.0",
         "clean-webpack-plugin": "^3.0.0",
         "cross-env": "^7.0.2",
         "css-loader": "^5.0.0",
@@ -40,14 +49,8 @@
         "eslint-plugin-react": "^7.21.5",
         "fork-ts-checker-webpack-plugin": "^6.0.1",
         "html-webpack-plugin": "^4.5.0",
-        "karma": "^5.2.3",
-        "karma-chai": "^0.1.0",
-        "karma-chrome-launcher": "^3.1.0",
-        "karma-mocha": "^2.0.1",
-        "karma-mocha-reporter": "^2.2.5",
-        "karma-webpack": "^4.0.2",
+        "jest": "^26.6.3",
         "mini-css-extract-plugin": "^1.2.0",
-        "mocha": "^8.2.0",
         "optimize-css-assets-webpack-plugin": "^5.0.4",
         "progress-bar-webpack-plugin": "^2.1.0",
         "stylelint": "^13.7.2",

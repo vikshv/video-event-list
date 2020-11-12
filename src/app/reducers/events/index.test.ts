@@ -1,81 +1,55 @@
-// import { expect } from 'chai';
+import expect from 'expect';
 
-// import {
-//     EVENTS_REQUEST,
-//     EVENTS_SUCCESS,
-//     EVENTS_ERROR
-// } from 'app/actions/eventsActions';
+import { loadEvents } from 'app/actions/eventsActions';
+import reducer from './index';
 
-// import {
-//     LoadEventsRequestAction,
-//     LoadEventsSuccessAction,
-//     LoadEventsErrorAction
-// } from 'app/actions/eventsActions';
+import type { AnalyticEvent } from 'core/domains/RootState/AnalyticEventState';
+import type AnalyticEventState from 'core/domains/RootState/AnalyticEventState';
 
-// import reducer from './index';
+describe('Events reducer', () => {
+    test(`Action ${loadEvents.pending}`, () => {
+        const state: AnalyticEventState = {
+            events: null,
+            progress: false
+        };
 
-// import type { AnalyticEvent } from 'core/domains/RootState/AnalyticEventState';
-// import type AnalyticEventState from 'core/domains/RootState/AnalyticEventState';
+        const result = reducer(state, loadEvents.pending);
 
-// describe('Events reducer', function() {
-//     it(`Action ${EVENTS_REQUEST}`, function() {
-//         const state: AnalyticEventState = {
-//             events: null,
-//             progress: false
-//         };
+        expect(result).toEqual({
+            ...state,
+            progress: true
+        })
+    });
 
-//         const action: LoadEventsRequestAction = {
-//             type: EVENTS_REQUEST
-//         };
+    test(`Action ${loadEvents.fulfilled}`, function() {
+        const state: AnalyticEventState = {
+            events: null,
+            progress: true
+        };
 
-//         const result = reducer(state, action);
+        const result = reducer(state, {
+            type: loadEvents.fulfilled.toString(),
+            payload: []
+        });
 
-//         expect(result).to.be.deep.equal({
-//             ...state,
-//             progress: true
-//         });
-//     });
+        expect(result).toEqual({
+            ...state,
+            progress: false,
+            events: []
+        });
+    });
 
-//     it(`Action ${EVENTS_SUCCESS}`, function() {
-//         const events: AnalyticEvent[] = [];
+    test(`Action ${loadEvents.rejected}`, function() {
+        const state: AnalyticEventState = {
+            events: null,
+            progress: true
+        };
 
-//         const state: AnalyticEventState = {
-//             events: null,
-//             progress: false
-//         };
+        const result = reducer(state, loadEvents.rejected);
 
-//         const action: LoadEventsSuccessAction = {
-//             type: EVENTS_SUCCESS,
-//             payload: {
-//                 events
-//             }
-//         };
-
-//         const result = reducer(state, action);
-
-//         expect(result).to.be.deep.equal({
-//             ...state,
-//             progress: false,
-//             events
-//         });
-//     });
-
-//     it(`Action ${EVENTS_ERROR}`, function() {
-//         const state: AnalyticEventState = {
-//             events: null,
-//             progress: true
-//         };
-
-//         const action: LoadEventsErrorAction = {
-//             type: EVENTS_ERROR,
-//             error: new Error()
-//         };
-
-//         const result = reducer(state, action);
-
-//         expect(result).to.be.deep.equal({
-//             ...state,
-//             progress: false
-//         });
-//     });
-// });
+        expect(result).toEqual({
+            ...state,
+            progress: false
+        })
+    });
+});
